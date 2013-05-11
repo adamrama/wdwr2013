@@ -1,0 +1,14 @@
+reset;
+option solver cplex;
+model model.mod;
+data data.dat;
+solve;
+display X[1,1];
+display X[2,1];
+display X[1,2];
+display X[2,2];
+display X[1,3];
+display X[2,3];
+display XS_FREE, XS_COST;
+display COST;
+exit;
