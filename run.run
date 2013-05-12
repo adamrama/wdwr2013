@@ -9,6 +9,5 @@ display X[1,2];
 display X[2,2];
 display X[1,3];
 display X[2,3];
-display XS_FREE, XS_COST;
-display COST;
+display F;
 exit;

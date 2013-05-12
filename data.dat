@@ -1,8 +1,8 @@
 param mm := 3;
 param cc := 2;
-param pp := 4;
 param rr := 2;
 param prc := 0.15;
+param kk := 2;
 
 param CS:	1	2	3	:=
 	1	35.0	43.0	38.0
@@ -19,3 +19,11 @@ param SP:	1	2	3	:=
 param: CN :=
 	1	1100
 	2	1200;
+
+param: AS :=
+	1	0
+	2	0;
+
+param: W :=
+	1	0
+	2	2000;

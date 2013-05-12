@@ -13,27 +13,29 @@ import java.util.Scanner;
 
 public class AmplCommunicationTools {
 	
-	public static List<Double> getResults(Data data, long[] aspiration, long[] scales, int mode) throws Exception {
+	public static Result getResults(Data data, long[] aspiration, long[] scales) throws Exception {
 		writeData("data.dat", aspiration, scales, data);
-		String textResult = runAmpl(mode);
-		System.out.println(textResult);
-		//return parseAmplResult(textResult);
-		return null;
+		String textResult = runAmpl();
+		List<Double> list = parseAmplResult(textResult);
+		Result result = new Result(textResult, list);
+		return result ;
 	}
 	
 	private static void writeData(String file, long[] aspiration, long[] scales, Data data) throws Exception {
 		PrintWriter out = new PrintWriter(new File(file));
 		out.println("param mm := " + Data.months + ";");
 		out.println("param cc := " + Data.components + ";");
-		out.println("param pp := " + Data.props + ";");
 		out.println("param rr := " + Data.resources + ";");
 		out.println("param prc := " + Data.overstorage_cost + ";");
+		out.println("param kk := 2;");
 
 		write2dimTab(out, "CS", data.cost);
 		write2dimTab(out, "ND", Data.need);
 		write2dimTab(out, "SP", Data.supply);
 		
 		write1dimTab(out, "CN", Data.contract);
+		write1dimTab(out, "AS", aspiration);
+		write1dimTab(out, "W", scales);
 		out.close();
 	}
 
@@ -72,7 +74,7 @@ public class AmplCommunicationTools {
 		out.print(";\n");
 	}
 
-	private static String runAmpl(int mode) throws IOException {
+	private static String runAmpl() throws IOException {
 		Process proc = Runtime.getRuntime().exec("ampl.exe run.run");
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				proc.getInputStream()));
