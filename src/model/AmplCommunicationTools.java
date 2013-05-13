@@ -16,6 +16,7 @@ public class AmplCommunicationTools {
 	public static Result getResults(Data data, long[] aspiration, long[] scales) throws Exception {
 		writeData("data.dat", aspiration, scales, data);
 		String textResult = runAmpl();
+		//System.out.println(textResult);
 		List<Double> list = parseAmplResult(textResult);
 		Result result = new Result(textResult, list);
 		return result ;
