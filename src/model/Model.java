@@ -6,19 +6,18 @@ public class Model {
 
 	public Model() {
 		data = new Data();
-		result = refresh(1, null, null);
-		//System.out.println(result.getText());
 	};
 
 	public Result refresh(int mode, long[] aspirations, long[] weights) {
 		try {
-			long[] asp = { 0, 0 };
+			//mode poza 1 i 2 
+                        long[] asp = { 0, 0 };
 			if (mode == 1) {
-				long[] wgs = { 1, 0 };
+				long[] wgs = { 100, 1 };
 				aspirations = asp;
 				weights = wgs;
 			} else if (mode == 2) {
-				long[] wgs = { 0, 1 };
+				long[] wgs = { 1, 100 };
 				aspirations = asp;
 				weights = wgs;
 			}
@@ -29,4 +28,14 @@ public class Model {
 		}
 		return result;
 	}
+
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
+    }
+        
+        
 }
